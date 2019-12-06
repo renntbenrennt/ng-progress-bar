@@ -1,0 +1,59 @@
+.bg-skyblue {
+    background-color: skyblue;
+}
+
+.bg-mintcream {
+    background-color: mintcream;
+}
+
+@mixin progress-bar-container {
+    width: 160px;
+    position: relative;
+    height: 20px;    
+}
+
+@mixin progress-bar-child($width: unset) {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: $width;
+}
+
+.progress-bar {
+    @include progress-bar-container();
+
+    &:nth-of-type(even) {
+        transform: rotateY(180deg);
+    }
+
+    & + & {
+        margin-top: 10px;
+    }
+
+    .bar {
+        @include progress-bar-child();
+    }    
+}
+
+.flex-pro-bar {
+    @include progress-bar-container();
+
+    margin-top: 10px;
+
+    .wrapper {
+        @include progress-bar-child(100%);
+
+        display: flex;
+        justify-content: flex-end;
+
+        .triangle {
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent mintcream transparent transparent;
+        }
+
+        .bar {
+            flex-basis: 50%;
+        }
+    }
+}
