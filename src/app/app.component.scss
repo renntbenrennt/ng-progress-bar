@@ -19,12 +19,15 @@
     width: $width;
 }
 
-.progress-bar {
-    @include progress-bar-container();
-
+@mixin transform-second-one {
     &:nth-of-type(even) {
         transform: rotateY(180deg);
     }
+}
+
+.progress-bar {
+    @include progress-bar-container();
+    @include transform-second-one();
 
     & + & {
         margin-top: 10px;
@@ -37,8 +40,20 @@
 
 .flex-pro-bar {
     @include progress-bar-container();
+    @include transform-second-one();
 
     margin-top: 10px;
+
+    &::before {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-style: solid;
+        border-width: 10px;
+        border-color: white skyblue white white;
+    }
 
     .wrapper {
         @include progress-bar-child(100%);
@@ -53,7 +68,7 @@
         }
 
         .bar {
-            flex-basis: 50%;
+            flex-basis: 0%;
         }
     }
 }
